@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <img src="https://dvblobcdnjp.azureedge.net//Content/Upload/Popular/Images/2018-04/ae6ac53f-7984-4e1c-ba54-afd4fae363d3_m.jpg" />
+    <ul>
+        <li style="font-size:larger">name:@ViewData["Name"]</li>
+        <li style="font-size:larger">age:@ViewData["age"]</li>
+        <li style="font-size:larger">single:@ViewData["single"]</li>
+    </ul>
+    <ul>
+        @foreach(var pet in Model)
+        {
+            <li>@pet</li>
+        }
+    </ul>
+</div>
+

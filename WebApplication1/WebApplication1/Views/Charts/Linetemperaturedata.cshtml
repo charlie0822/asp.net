@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<WebApplication1.Models.Location>
+@{
+    ViewBag.Title = "Linetemperaturedata";
+    var jsonmonth = Json.Encode(ViewBag.Monthlabel);
+    var jsonlocation = Json.Encode(Model);
+}
+
+<h2>Linetemperaturedata</h2>
+
+<div class="container">
+    <div class="jumbotron alert-success">
+        <h2>折線圖繪製各地區月均溫</h2>
+    </div>
+    <canvas id="linechart"></canvas>
+</div>
+
+@section endjs{
+    <script>
+        var jslocation = @Html.Raw(jsonlocation);
+        var jsmonth = @Html.Raw(jsonmonth);
+        var ctx = document.getElementById("linechart");
+        var chart = new Chart(ctx,{
+            type: "line",
+            data: {
+                labels: jsmonth,
+                datasets: [
+                    {
+                        label: jslocation[0].City,
+                        data: jslocation[0].Temperate,
+                        fill: false,
+                        borderColor: 'rgb(255, 9, 0)'
+                    },
+                    {
+                        label: jslocation[1].City,
+                        data: jslocation[1].Temperate,
+                        fill: false,
+                        borderColor: 'rgb(0, 76, 255)'
+                    },
+                    {
+                        label: jslocation[2].City,
+                        data: jslocation[2].Temperate,
+                        fill: false,
+                        borderColor: 'rgb(191, 0, 255)'
+                    }
+                ]
+            }
+
+        })
+    </script>
+    }
+

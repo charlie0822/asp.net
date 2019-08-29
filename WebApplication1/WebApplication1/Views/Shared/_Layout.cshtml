@@ -7,7 +7,9 @@
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/chartjs")
+    @RenderSection("topcss",required:false)
+    @RenderSection("topjs",required:false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,5 +43,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @RenderSection("endcss",required:false)
+    @RenderSection("endjs",required:false)
 </body>
 </html>

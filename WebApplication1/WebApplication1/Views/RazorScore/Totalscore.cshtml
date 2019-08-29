@@ -1,0 +1,118 @@
+﻿@model IEnumerable<WebApplication1.Models.studentscore>
+
+@{
+    ViewBag.Title = "Totalscore";
+}
+<style type="text/css">
+    th{
+        color:white;
+        background-color:black;
+        text-align:center;
+    }
+    .table>tbody>tr:hover{
+        background-color:antiquewhite!important;
+    }
+    .poor{
+        color:white!important;
+        background-color:red;
+    }
+    .excellent{
+        color:white!important;
+        background-color:aqua;
+    }
+    .top1{
+        color:white;
+        background-color:blueviolet;
+    }
+    .top1::after{
+        content:'(總分第一)';
+    }
+</style>
+<h2>Totalscore</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chinese)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.math)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.English)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <!--國文-->
+        @if (item.Chinese < 60)
+        {
+            <td class="poor">@Html.DisplayFor(modelItem => item.Chinese)</td>
+        }
+        else if (item.Chinese > 94)
+        {
+            <td class="excellent">@Html.DisplayFor(modelItem => item.Chinese)</td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(modelItem => item.Chinese)</td>
+        }
+
+        <!--數學-->
+        @if (item.math < 60)
+        {
+            <td class="poor">@Html.DisplayFor(modelItem => item.math)</td>
+        }
+        else if (item.math > 94)
+        {
+            <td class="excellent">@Html.DisplayFor(modelItem => item.math)</td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(modelItem => item.math)</td>
+        }
+        <!--英文-->
+        @if (item.English < 60)
+        {
+            <td class="poor">@Html.DisplayFor(modelItem => item.English)</td>
+        }
+        else if (item.English > 94)
+        {
+            <td class="excellent">@Html.DisplayFor(modelItem => item.English)</td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(modelItem => item.English)</td>
+        }
+        <!--總和-->
+        @if (item.ID == ViewBag.topid)
+        {
+            <td class="top1">@Html.DisplayFor(modelItem => item.Total)</td>
+        }
+        else
+        {
+            <td>@Html.DisplayFor(modelItem => item.Total)</td>
+        }
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

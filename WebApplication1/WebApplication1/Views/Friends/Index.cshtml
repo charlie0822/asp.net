@@ -4,21 +4,34 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/friendLayout .cshtml";
 }
-
+<style type="text/css">
+    th{
+        color:white;
+        background-color:black;
+        text-align:center;
+    }
+    .table>tbody>tr:hover{
+        background-color:antiquewhite;
+    }
+</style>
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
         <th>
+            <div class="glyphicon glyphicon-th-list"></div>
+            @Html.DisplayNameFor(Model => Model.ID)
+        </th>
+        <th>
+            <div class="glyphicon glyphicon-user"></div>
             @Html.DisplayNameFor(model => model.name)
         </th>
         <th>
+            <div class="glyphicon glyphicon-phone"></div> 
             @Html.DisplayNameFor(model => model.phone)
         </th>
         <th>
+            <div class="glyphicon glyphicon-envelope"></div>
             @Html.DisplayNameFor(model => model.email)
         </th>
         <th></th>
@@ -26,6 +39,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>item.ID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
@@ -36,11 +52,15 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("編輯", "Edit", new { id=item.ID },new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("明細", "Details", new { id=item.ID }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("刪除", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
 
+
 </table>
+    <p>
+        @Html.ActionLink("新增朋友資料","Create",null, new { @class = "btn btn-warning" })
+    </p>
